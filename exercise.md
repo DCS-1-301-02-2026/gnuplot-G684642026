@@ -26,6 +26,14 @@
 ```gnuplot {cmd=true output="html"}
 set terminal svg
 
+set xrange [0:7]
+set yrange [-20:15]
+set grid
+set xlabel "x"
+set ylabel "y"
+set title "関数のプロット"
+plot 2*sqrt(x)*x*x-5*x*x title "f1(x)",  (x)/(log(x)) title "f2(x)"
+
 ```
 
 ## 3. 八王子の気温
@@ -46,6 +54,16 @@ set terminal svg
 set xdata time
 set timefmt '%Y/%m/%d'
 set xtics format "%m/%d"
+set datafile separator ","
+set title "八王子の気温"
+set title "日付"
+set title "気温(℃)"
+set grid
+plot "weather2026.csv" using 1:2 with lines title "最高気温", \
+"weather2026.csv" using 1:3 with lines title "最高気温(平年)", \
+"weather2026.csv" using 1:4 with lines title "最低気温",\
+"weather2026.csv" using 1:5 with lines title "最低気温(平年)" 
+
 
 ```
 
@@ -66,6 +84,17 @@ set xtics format "%m/%d"
 ```gnuplot {cmd=true, output="html"}
 set terminal svg
 unset key
+
+
+ set style fill solid
+ set boxwidth 0.6
+ set yrange [0:18]
+ set grid
+ set title "誕生日の月別人数"
+ set xlabel "誕生月"
+ set ylabel "人数"
+
+ plot "bm.txt" using 1:2:xtic(1) with boxes linecolor "skyblue"
 
 
 ```
